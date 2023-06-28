@@ -120,7 +120,7 @@ class BaseTask(metaclass=ABCMeta):
         model = MODELS.build(model)
         if model_checkpoint is not None:
             from mmengine.runner.checkpoint import load_checkpoint
-            load_checkpoint(model, model_checkpoint, map_location=self.device)
+            load_checkpoint(model, model_checkpoint, map_location="cpu")
 
         model = revert_sync_batchnorm(model)
         if hasattr(model, 'backbone') and hasattr(model.backbone,
